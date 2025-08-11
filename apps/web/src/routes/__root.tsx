@@ -1,18 +1,19 @@
-import Header from "@/components/header";
-import Loader from "@/components/loader";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import type { trpc } from "@/utils/trpc";
-import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
+  createRootRouteWithContext,
   HeadContent,
   Outlet,
-  createRootRouteWithContext,
   useRouterState,
-} from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import "../index.css";
+} from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import Header from '@/components/header';
+import Loader from '@/components/loader';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
+import type { trpc } from '@/utils/trpc';
+import '../index.css';
+import { Footer } from '@/components/footer';
 
 export interface RouterAppContext {
   trpc: typeof trpc;
@@ -24,17 +25,17 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       {
-        title: "betterfleets",
+        title: 'BetterFrleets',
       },
       {
-        name: "description",
-        content: "betterfleets is a web application",
+        name: 'description',
+        content: 'betterfleets is a web application',
       },
     ],
     links: [
       {
-        rel: "icon",
-        href: "/favicon.ico",
+        rel: 'icon',
+        href: '/favicon.ico',
       },
     ],
   }),
@@ -45,7 +46,6 @@ function RootComponent() {
     select: (s) => s.isLoading,
   });
 
-
   return (
     <>
       <HeadContent />
@@ -55,14 +55,15 @@ function RootComponent() {
         disableTransitionOnChange
         storageKey="vite-ui-theme"
       >
-        <div className="grid grid-rows-[auto_1fr] h-svh">
+        <div className="grid h-svh grid-rows-[auto_1fr] bg-background text-foreground">
           <Header />
           {isFetching ? <Loader /> : <Outlet />}
+          <Footer />
         </div>
         <Toaster richColors />
       </ThemeProvider>
       <TanStackRouterDevtools position="bottom-left" />
-      <ReactQueryDevtools position="bottom" buttonPosition="bottom-right" />
+      <ReactQueryDevtools buttonPosition="bottom-right" position="bottom" />
     </>
   );
 }
