@@ -25,7 +25,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       {
-        title: 'BetterFrleets',
+        title: 'BetterFleets',
       },
       {
         name: 'description',
@@ -55,7 +55,10 @@ function RootComponent() {
         disableTransitionOnChange
         storageKey="vite-ui-theme"
       >
-        <div className="grid h-svh grid-rows-[auto_1fr] bg-background text-foreground">
+        <div
+          className="grid h-screen overflow-hidden bg-background text-foreground"
+          style={{ gridTemplateRows: 'auto 1fr auto' }}
+        >
           <Header />
           {isFetching ? <Loader /> : <Outlet />}
           <Footer />

@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { trpc } from '@/utils/trpc';
 
 export const Footer: React.FC = () => {
-  const healthCheck = useQuery(trpc.healthCheck.queryOptions());
+  // biome-ignore lint/suspicious/noExplicitAny: TRPC proxy is intentionally untyped in web
+  const healthCheck = useQuery((trpc as any).healthCheck.queryOptions());
 
   const checkHealth = (data?: unknown) => {
     if (data) {

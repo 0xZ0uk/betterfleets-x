@@ -19,7 +19,12 @@
       "!**/.source"
     ]
   },
-  "extends": [
-    "ultracite"
-  ]
+  "linter": {
+    "rules": {
+      "nursery": {
+        "noUnknownAtRule": "warn"
+      }
+    }
+  },
+  "extends": ["ultracite"]
 }
