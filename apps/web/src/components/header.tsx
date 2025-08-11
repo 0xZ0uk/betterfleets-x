@@ -10,23 +10,27 @@ export default function Header() {
   ];
 
   return (
-    <div className="">
-      <div className="flex max-w-6xl flex-row items-center justify-between px-2 py-1">
-        <nav className="flex gap-4 text-lg">
-          {links.map(({ to, label }) => {
-            return (
-              <Link key={to} to={to}>
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="flex items-center gap-2">
-          <ModeToggle />
-          <UserMenu />
+    <header className="flex h-12 w-full items-center justify-center border-b">
+      <div className="flex w-full max-w-6xl flex-row items-center justify-between px-2 py-1">
+        <div>
+          <span>BetterFleets</span>
+        </div>
+        <div className="flex w-full items-center justify-end gap-8">
+          <nav className="flex gap-4 text-base">
+            {links.map(({ to, label }) => {
+              return (
+                <Link key={to} to={to}>
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="flex items-center gap-2">
+            <ModeToggle />
+            <UserMenu />
+          </div>
         </div>
       </div>
-      <hr />
-    </div>
+    </header>
   );
 }
